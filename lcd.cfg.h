@@ -29,8 +29,12 @@
 #ifndef LCD_CFG_H_
 #define LCD_CFG_H_
 
-/// 1 = Use local framebuffer in RAM and copy to LCD on call to lcd_flush().<br>0 = Directly manipulate LCD ram contents.
-#define LCD_FRAMEBUFFER_MODE	0
+/// 1 = Use local framebuffer in RAM and copy to LCD on call to lcd_flush().<br>0 = Directly manipulate LCD ram contents.<br>You may define the macro ENABLE_FRAMEBUFFER during the compile process to enable the usage of the local framebuffer.
+#ifdef ENABLE_FRAMEBUFFER
+	#define LCD_FRAMEBUFFER_MODE	1
+#else
+	#define LCD_FRAMEBUFFER_MODE	0
+#endif
 
 /// Port where the data pins of the display are connected
 #define LCD_DATA_PORT	PDR01
